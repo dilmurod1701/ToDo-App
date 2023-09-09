@@ -1,0 +1,29 @@
+{% extends 'pages/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block heading %}
+    <title>Posts</title>
+
+    <style>
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+{% endblock heading %}
+
+
+{% block content %}
+    <h1 class="main">Add Task</h1>
+    <form class="form" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-info" type="submit">Post</button>
+    </form>
+
+
+{% endblock content %}

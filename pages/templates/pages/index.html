@@ -1,0 +1,155 @@
+{% extends 'pages/base.html' %}
+
+{% block heading %}
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            position: relative;
+            margin: auto;
+            margin-top: 20px;
+            padding-left: 50px;
+        }
+
+        .title {
+            position: relative;
+            left: 40px;
+            top: 10px;
+        }
+
+        #icon {
+            position: relative;
+            font-size: 20px;
+            right: 49px;
+            bottom: 28px;
+            width: 100%;
+        }
+
+
+        .check {
+            position: relative;
+            left: -1%;
+            bottom: 45px;
+            width: 40px;
+            height: 20px;
+        }
+
+        .card-title {
+            position: relative;
+            bottom: 30%;
+            left: -3%;
+        }
+
+        .card-text {
+            position: relative;
+            bottom: 20%;
+
+            left: -3%;
+        }
+
+        #inside {
+            height: 20px;
+            padding-bottom: 70px;
+            padding-top: 20px;
+            margin-left: 290px;
+        }
+
+        #top {
+            height: 20px;
+            padding-bottom: 70px;
+            padding-top: 20px;
+            margin-left: 15%;
+            background-color: green;
+        }
+
+        #head {
+            position: relative:
+            left: -800px;
+            right: 805px;
+            width: 300%;
+            height: 900px;
+            bottom: 417px;
+
+        }
+
+        #left {
+            position: relative;
+            right: 40px;
+        }
+
+        .myday {
+            position: relative;
+            left: 40px;
+            bottom: 25px;
+        }
+
+
+        .important {
+            position: relative;
+            left: 40px;
+            bottom: 25px;
+        }
+
+        .tasks {
+            position: relative;
+            left: 40px;
+            bottom: 25px;
+        }
+    </style>
+{% endblock heading %}
+
+
+{% block content %}
+
+    <div id="top" class="card">
+      <div class="card-body">
+        <h5 class="card-title">My Day</h5>
+        <p class="card-text">Today</p>
+      </div>
+    </div>
+
+    {% for task in tasks %}
+            <div id="inside" class="card" style="width: 100rem;">
+                <h3 class="title"><a href="tasks/{{ task.id }}">{{ task.title }}</a></h3>
+                <i id="icon" class="fa-regular fa-star"></i>
+                <input class="check" type="checkbox">
+            </div>
+    {% endfor %}
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous.page_number }}">Previous</a></li>
+            {% endif %}
+
+            {% for page in paginator.page_range %}
+                <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            {% endif %}
+      </ul>
+    </nav>
+
+<!--    <div id="head" class="card border-info mb-3" style="max-width: 18rem;">-->
+<!--        <div id="left" class="card-body">-->
+<!--            <h4>Project: ToDo</h4><br>-->
+<!--            <i class="fa-solid fa-atom"></i>-->
+<!--            <h5 class="myday">My Day</h5>-->
+<!--            <i class="fa-solid fa-star"></i>-->
+<!--            <h5 class="important">Important</h5>-->
+<!--            <i class="fa-solid fa-briefcase"></i>-->
+<!--            <h5 class="tasks">Tasks</h5>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+{% endblock content %}

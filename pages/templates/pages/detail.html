@@ -1,0 +1,39 @@
+{% extends 'pages/base.html' %}
+
+{% block heading %}
+    <title>{{ tasks.title }}</title>
+
+    <style>
+        #main {
+            position: relative;
+            left: 40%;
+        }
+
+        .delete {
+            position: relative;
+            left: 40%;
+            margin-right: 7%;
+            margin-top: 60%;
+        }
+        .update {
+            position: relative;
+            left: 40%;
+        }
+
+    </style>
+{% endblock heading %}
+
+
+{% block content %}
+    <div id="main" class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+        <div class="card-header"><h3>{{ tasks.title }}</h3></div>
+            <p>{{ tasks.description }}</p>
+            <span class="start">Started: {{ tasks.start|date }}</span>
+            <span class="finish">Finished: {{ tasks.finish|date }}</span>
+        </div>
+    </div>
+
+    <a class="delete" href="{{ tasks.id }}/delete"><button type="button" class="btn btn-danger">Delete</button></a>
+    <a class="update" href="{{ tasks.id }}/update"><button type="button" class="btn btn-success">Update</button></a>
+
+{% endblock content %}
