@@ -84,6 +84,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'hacker',
         'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
 
@@ -134,3 +135,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+
+#version: '3.9'
+#services:
+#  db:
+#    image: todo
+#    environment:
+#      - POSTGRES_DB=todo
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=hacker
+#  web:
+#    build: .
+#    command: python manage.py runserver 0.0.0.0:8000
+#    volumes:
+#      - .:/data
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - db
